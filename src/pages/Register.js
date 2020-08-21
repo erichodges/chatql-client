@@ -80,7 +80,7 @@ export default function Register() {
               </Form.Group>{' '}
               <Form.Group>
                 <Form.Label className={errors?.password ? 'text-danger': ""}>
-                  {errors?.password && 'Password'}
+                  {errors?.password ?? 'Password'}
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -93,7 +93,7 @@ export default function Register() {
               </Form.Group>{' '}
               <Form.Group>
                 <Form.Label className={errors?.confirmPassword ? 'text-danger': ""}>
-                  {errors?.confirmPassword && 'Confirm Password'}
+                  {errors?.confirmPassword ?? 'Confirm Password'}
                 </Form.Label>
                 <Form.Control
                   type="text"
