@@ -53,7 +53,7 @@ export default function Register() {
           <div>
             <Form onSubmit={submitRegisterForm}>
               <Form.Group>
-                <Form.Label className={errors.email ?? 'text-danger'}>
+                <Form.Label className={errors.email && 'text-danger'}>
                   {errors.email ?? 'Email address'}
                 </Form.Label>
                 <Form.Control
@@ -66,7 +66,7 @@ export default function Register() {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label className={errors.username ?? 'text-danger'}>
+                <Form.Label className={errors.username && 'text-danger'}>
                   {errors.username ?? 'Username'}
                 </Form.Label>
                 <Form.Control
@@ -79,7 +79,7 @@ export default function Register() {
                 />
               </Form.Group>{' '}
               <Form.Group>
-                <Form.Label className={errors.password ?? 'text-danger'}>
+                <Form.Label className={errors.password && 'text-danger'}>
                   {errors.password && 'Password'}
                 </Form.Label>
                 <Form.Control
@@ -92,7 +92,7 @@ export default function Register() {
                 />
               </Form.Group>{' '}
               <Form.Group>
-                <Form.Label className={errors.confirmPassword ?? 'text-danger'}>
+                <Form.Label className={errors.confirmPassword && 'text-danger'}>
                   {errors.confirmPassword && 'Confirm Password'}
                 </Form.Label>
                 <Form.Control
