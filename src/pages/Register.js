@@ -53,52 +53,52 @@ export default function Register() {
           <div>
             <Form onSubmit={submitRegisterForm}>
               <Form.Group>
-                <Form.Label className={errors.email && 'text-danger'}>
-                  {errors.email ?? 'Email address'}
+                <Form.Label className={errors?.email ? 'text-danger' : ''}>
+                  {errors?.email ?? 'Email address'}
                 </Form.Label>
                 <Form.Control
                   type="email"
                   value={variables.email}
-                  className={errors.email && 'is-invalid'}
+                  className={errors?.email && 'is-invalid'}
                   onChange={(e) =>
                     setVariables({ ...variables, email: e.target.value })
                   }
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label className={errors.username && 'text-danger'}>
-                  {errors.username ?? 'Username'}
+                <Form.Label className={errors?.username ? 'text-danger': ""}>
+                  {errors?.username ?? 'Username'}
                 </Form.Label>
                 <Form.Control
                   type="text"
                   value={variables.username}
-                  className={errors.username && 'is-invalid'}
+                  className={errors?.username && 'is-invalid'}
                   onChange={(e) =>
                     setVariables({ ...variables, username: e.target.value })
                   }
                 />
               </Form.Group>{' '}
               <Form.Group>
-                <Form.Label className={errors.password && 'text-danger'}>
-                  {errors.password && 'Password'}
+                <Form.Label className={errors?.password ? 'text-danger': ""}>
+                  {errors?.password && 'Password'}
                 </Form.Label>
                 <Form.Control
                   type="text"
                   value={variables.password}
-                  className={errors.password && 'is-invalid'}
+                  className={errors?.password && 'is-invalid'}
                   onChange={(e) =>
                     setVariables({ ...variables, password: e.target.value })
                   }
                 />
               </Form.Group>{' '}
               <Form.Group>
-                <Form.Label className={errors.confirmPassword && 'text-danger'}>
-                  {errors.confirmPassword && 'Confirm Password'}
+                <Form.Label className={errors?.confirmPassword ? 'text-danger': ""}>
+                  {errors?.confirmPassword && 'Confirm Password'}
                 </Form.Label>
                 <Form.Control
                   type="text"
                   value={variables.confirmPassword}
-                  className={errors.confirmPassword ?? 'is-invalid'}
+                  className={errors?.confirmPassword ?? 'is-invalid'}
                   onChange={(e) =>
                     setVariables({
                       ...variables,
