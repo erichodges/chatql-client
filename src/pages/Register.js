@@ -30,12 +30,15 @@ export default function Register() {
     confirmPassword: '',
   });
 
-  const [registerUser, { loading, errors }] = useMutation(REGISTER_USER, {
+  const [errors, setErrors] = useState();
+  
+  const [registerUser, { loading, err }] = useMutation(REGISTER_USER, {
     update(_, res) {
       console.log(res);
     },
     onError(err) {
-      console.log(err);
+      console.log(err.graphQLErrors[0].extensions.errors);
+      setErrors(err.graphQLErrors[0].extensions.errors);
     },
   });
 
@@ -43,8 +46,15 @@ export default function Register() {
     e.preventDefault();
 
     registerUser({ variables });
+    setVariables({
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
+    })
+    setErrors({});
   };
-
+// errors?.email ? 'text-danger' : ''
   return (
     <div>
       <Row className="bg-white py-5 justify-content-center">
@@ -53,8 +63,8 @@ export default function Register() {
           <div>
             <Form onSubmit={submitRegisterForm}>
               <Form.Group>
-                <Form.Label className={errors?.email ? 'text-danger' : ''}>
-                  {errors?.email ?? 'Email address'}
+                <Form.Label className={errors?.email && 'text-danger'}>
+                  {errors?.email ? 'Email address': 'Email address'}
                 </Form.Label>
                 <Form.Control
                   type="email"
@@ -66,7 +76,7 @@ export default function Register() {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label className={errors?.username ? 'text-danger': ""}>
+                <Form.Label className={errors?.username && 'text-danger'}>
                   {errors?.username ?? 'Username'}
                 </Form.Label>
                 <Form.Control
@@ -79,7 +89,7 @@ export default function Register() {
                 />
               </Form.Group>{' '}
               <Form.Group>
-                <Form.Label className={errors?.password ? 'text-danger': ""}>
+                <Form.Label className={errors?.password && 'text-danger'}>
                   {errors?.password ?? 'Password'}
                 </Form.Label>
                 <Form.Control
@@ -92,13 +102,13 @@ export default function Register() {
                 />
               </Form.Group>{' '}
               <Form.Group>
-                <Form.Label className={errors?.confirmPassword ? 'text-danger': ""}>
+                <Form.Label className={errors?.confirmPassword && 'text-danger'}>
                   {errors?.confirmPassword ?? 'Confirm Password'}
                 </Form.Label>
                 <Form.Control
                   type="text"
                   value={variables.confirmPassword}
-                  className={errors?.confirmPassword ?? 'is-invalid'}
+                  className={errors?.confirmPassword && 'is-invalid'}
                   onChange={(e) =>
                     setVariables({
                       ...variables,
